@@ -51,12 +51,16 @@ int binarysearch(int *a,int n,int x)
 int main()
 {
     int a[100],i,n,x,t;
+    cout<<"Enter N : ";
     gi(n);
+    cout<<"Enter Number : ";
     fl(i,n)
     gi(a[i]);
+    cout<<"Enter number of searches : ";
     gi(t);
     fl(i,t)
         {
+            cout<<"Enter Search Element ";
             gi(x);
             pi(binarysearch(a,n,x));
             pn;
