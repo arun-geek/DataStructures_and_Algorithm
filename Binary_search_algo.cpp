@@ -30,15 +30,17 @@ int bs(int *a,int n, int x ,int left,bool asc)
 {
     int right,mid;
     right = n;
-    if(left>right)
+    while(left<=right)
+        {
+            mid = (right+left)>>1;
+            if(a[mid]==x)
+                return mid;
+            else if((a[mid] > x)==asc)
+                right = mid-1;
+            else if((a[mid]< x)==asc)
+                left=mid+1;
+        }
         return -1;
-    mid = (right+left)>>1;
-    if(a[mid]==x)
-        return mid;
-    else if((a[mid] > x)==asc)
-        return bs(a,mid-1,x,left,asc);
-    else if((a[mid]< x)==asc)
-        return bs(a,right,x,mid+1,asc);
 }
 int binarysearch(int *a,int n,int x)
 {

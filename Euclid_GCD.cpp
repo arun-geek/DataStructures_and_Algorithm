@@ -13,9 +13,14 @@
 using namespace std;
 int gcd(int x,int y)
 {
-    if(x==0)
-        return y;
-    return gcd(y%x,x);
+    int z;
+    while(x!=0)
+    {
+        z = x;
+        x = y%x;
+        y = z;
+    }
+    return y;
 }
 int main()
 {
