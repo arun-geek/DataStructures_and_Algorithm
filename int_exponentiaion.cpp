@@ -12,19 +12,21 @@
 using namespace std;
 lli exp(lli a, lli p ,lli mod)
 {
-    lli x;
-    if(p==0)
-        return 1;
+lli result = 1;
+if(p==0)
+    return 1;
+if(p==1)
+    return a;
+while(p)
+{
     if(p&1)
-        {
-         x = exp(a,p-1,mod);
-         return (a*x)%mod;
-        }
-    else
-    {
-        x = exp(a,p>>1,mod);
-        return (x*x)%mod;
-    }
+        result *= a;
+    result%=mod;
+    p >>=1;
+    a*=a;
+    a%=mod;
+}
+return result;
 }
 int main()
 {
@@ -32,6 +34,6 @@ int main()
     m=1;
     cout<<"Enter a , p and mod : ";
     cin>>a>>p>>m;
-    cout<<exp(a,p,m);
+    cout<<exp(a,p,m)<<'\n';
     return 0;
 }
