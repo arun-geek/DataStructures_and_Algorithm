@@ -28,29 +28,31 @@ unsigned long long int** mmul(unsigned long long int** m,unsigned long long int*
 unsigned long long int** mpow(unsigned long long int** matrix,unsigned long long int p,unsigned long long int n)
 {
     unsigned long long int **m,i,j;
-    m = new unsigned long long int* [n];
-        fl(i,n)
-            m[i]=new unsigned long long int[n];
-        fl(i,n)
-            fl(j,n)
-            {
-                if(i==j)
-                    m[i][j]=1;
-                else
-                    m[i][j]=0;
-            }
+        m = new unsigned long long int* [n];
+    fl(i,n)
+    m[i]=new unsigned long long int[n];
     if(p==0)
-        return m;
-    else if(p==1)
-        return matrix;
-    while(p)
     {
-        if(p&1)
-            m = mmul(m,matrix,n);
-        p>>=1;
-            matrix = mmul(matrix,matrix,n);
+        fl(i,n)
+        fl(j,n)
+        {
+            if(i==j)
+                m[i][j]=1;
+            else
+                m[i][j]=0;
+        }
+        return m;
     }
-    return m;
+    if(p%2==0)
+    {
+         m = mpow(matrix,p>>1,n);
+         return mmul(m,m,n);
+    }
+    else
+    {
+         m = mpow(matrix,p-1,n);
+         return mmul(m,matrix,n);
+    }
 }
 int main()
 {
